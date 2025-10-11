@@ -1,7 +1,6 @@
 # Socket Network Lab
 
-A computer networking lab project using TCP sockets.  
-Includes basic implementations of client, server, and shared code.
+A computer networking lab project using TCP sockets. Includes basic implementations of client, server, and shared code.
 
 ## Project Structure
 
@@ -12,4 +11,4 @@ socket-network-lab/
 ├── server/           # Server code
 │   └── server.py
 └── shared/           # Shared modules and utilities
-    └── utils.py
+    └── config.py
