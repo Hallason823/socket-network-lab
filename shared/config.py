@@ -1,9 +1,9 @@
 import random
 import socket
 
-PARAMETERS_NAME = ['--server-port', '--server-ip'] 
-DEFAULT_VALUES = [random.randint(1024, 49151), socket.gethostbyname(socket.gethostname())]
-TYPES = ['int', 'string']
+PARAMETERS_NAME = ['--server-port', '--server-ip', '--header', '--selected-format', '--disconnect_message'] 
+DEFAULT_VALUES = [random.randint(1024, 49151), socket.gethostbyname(socket.gethostname()), 64, 'utf-8', "!DISCONNECT"]
+TYPES = ['int', 'string', 'int', 'string', 'string']
 
 def print_help():
     print('\nUsage: python main.py [OPTIONS]\n')
