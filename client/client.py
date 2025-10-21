@@ -37,7 +37,8 @@ class Client:
                 if msg is None:
                     print("[SERVER DISCONNECTED]")
                     break
-                print(msg)
+                print(f"\n{msg}")
+                print("Type your message: ", end="", flush=True)
             except Exception as e:
                 print(f"[ERROR] {e}")
                 break
@@ -62,5 +63,5 @@ class Client:
         self.client_socket.close()
 
 if __name__ == "__main__":
-    client = Client(ip=socket.gethostbyname(socket.gethostname()), port=12348, header=64, selected_format="utf-8", disconnect_message="!QUIT", who_command="!WHO")
+    client = Client(ip=socket.gethostbyname(socket.gethostname()), port=12345, header=64, selected_format="utf-8", disconnect_message="!QUIT", who_command="!WHO")
     client.start()
