@@ -95,10 +95,9 @@ class Server:
             print(f"[{nickname}] {msg}")
 
     def disconnect_client(self, conn, nickname):
-        with self.lock:
-            self.broadcast_message(nickname, f"User {nickname} has left the chat.")
-            if nickname in self.active_clients:
-                del self.active_clients[nickname]
+        self.broadcast_message(nickname, f"User {nickname} has left the chat.")
+        if nickname in self.active_clients:
+            del self.active_clients[nickname]
         conn.close()
         print(f"[DISCONNECTED] {nickname} disconnected.")
         print(f"[ACTIVE CONNECTIONS] {len(self.active_clients)}")
