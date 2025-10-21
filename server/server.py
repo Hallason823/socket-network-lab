@@ -50,6 +50,7 @@ class Server:
                 self.active_clients[nickname] = conn
                 print(f"[NEW USER] {nickname} joined from {addr}")
                 self.send_message(conn, f"User {nickname} joined")
+                print(f"[ACTIVE CONNECTIONS] {threading.active_count()-1}")
                 return nickname
 
     def send_active_users(self, conn):
@@ -82,6 +83,7 @@ class Server:
                 del self.active_clients[nickname]
         conn.close()
         print(f"[DISCONNECTED] {nickname} disconnected.")
+        print(f"[ACTIVE CONNECTIONS] {len(self.active_clients)}")
 
     def handle_client(self, conn, addr):
         nickname = self.register_nickname(conn, addr)
@@ -98,7 +100,6 @@ class Server:
             self.send_message(conn, "Send your nickname to register, please.")
             thread = threading.Thread(target=self.handle_client, args=(conn, addr))
             thread.start()
-            print(f"[ACTIVE CONNECTIONS] {len(self.active_clients)}")
 
 if __name__ == "__main__":
     server = Server(ip=socket.gethostbyname(socket.gethostname()),port=12345,header=64,selected_format="utf-8",who_command="!WHO",disconnect_message="!QUIT")
