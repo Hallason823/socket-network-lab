@@ -3,7 +3,7 @@ import socket
 
 PARAMETERS_NAME = ['--server-port', '--server-ip', '--header', '--selected-format', '--who_message', '--disconnect_message'] 
 DEFAULT_VALUES = [random.randint(1024, 49151), socket.gethostbyname(socket.gethostname()), 64, 'utf-8', "!WHO", "!QUIT"]
-TYPES = ['int', 'string', 'int', 'string', 'string']
+TYPES = ['int', 'string', 'int', 'string', 'string', 'string']
 
 def print_help():
     print('\nUsage: python main.py [OPTIONS]\n')
