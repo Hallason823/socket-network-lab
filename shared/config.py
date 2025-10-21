@@ -13,11 +13,11 @@ def print_error(error):
         print_help()
         exit(1)
 
-def set_parameter(args, param_name, default_value, type):
+def set_parameter(args, param_name, default_value, s_type):
     param = None
     for arg in args:
          if arg.startswith(param_name + '='):
-            if type_ == 'int':
+            if s_type == 'int':
                 param = int(arg.split('=')[1])
             else:
                 param = arg.split('=')[1]
