@@ -51,7 +51,7 @@ class Client:
         thread.daemon = True
         thread.start()
         while True:
-            msg = input(" ")
+            msg = input("")
             if msg.upper() == self.disconnect_message.upper():
                 self.send_message(self.disconnect_message)
                 break
