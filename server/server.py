@@ -117,6 +117,3 @@ class Server:
             self.send_message(conn, "Send your nickname to register, please.")
             thread = threading.Thread(target=self.handle_client, args=(conn, addr))
             thread.start()
-
-if __name__ == "__main__":
-    server = Server(ip=socket.gethostbyname(socket.gethostname()),port=12345,header=64,selected_format="utf-8",who_command="!WHO",disconnect_message="!QUIT")

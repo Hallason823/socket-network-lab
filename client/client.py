@@ -60,7 +60,3 @@ class Client:
             else:
                 self.send_message(msg)
         self.client_socket.close()
-
-if __name__ == "__main__":
-    client = Client(ip=socket.gethostbyname(socket.gethostname()), port=12345, header=64, selected_format="utf-8", disconnect_message="!QUIT", who_command="!WHO")
-    client.start()
