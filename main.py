@@ -1,7 +1,7 @@
 import sys
-from shared import config
-from server import Server
-from client import Client
+from server.server import Server
+from client.client import Client
+from shared.config import *
 
 def run_mode(configs):
     if configs[0] == 'server':
@@ -19,10 +19,10 @@ def main():
     params = sys.argv
 
     if '-h' in params or '--help' in params:
-        config.print_help()
+        print_help()
         sys.exit(0)
 
-    configs = config.get_configs(params[1:])
+    configs = get_configs(params[1:])
     run_mode(configs)
 
 if __name__ == "__main__":
