@@ -4,12 +4,13 @@ from client.client import Client
 from shared.config import *
 
 def run_mode(configs):
+    params = dict(zip(['port', 'ip', 'header', 'selected_format', 'who_command', 'disconnect_message'], configs[1:]))
     if configs[0] == 'server':
-        print(f"Starting server on IP {configs[2]} and port {configs[1]}...")
-        server = Server(**configs[1:])
+        print(f"Starting server on IP {params['ip']} and port {params['port']}...")
+        server = Server(**params)
     elif configs[0] == 'client':
-        print(f"Starting client connecting to IP {configs[2]} and port {configs[1]}...")
-        client = Client(**configs[1:])
+        print(f"Starting client connecting to IP {params['ip']} and port {params['port']}...")
+        client = Client(**params)
         client.start()
     else:
         print("Invalid mode. Use --mode=server or --mode=client")
