@@ -38,7 +38,6 @@ class Client:
                     print("[SERVER DISCONNECTED]")
                     break
                 print(f"\n{msg}")
-                print("Type your message: ", end="", flush=True)
             except Exception as e:
                 print(f"[ERROR] {e}")
                 break
@@ -52,7 +51,7 @@ class Client:
         thread.daemon = True
         thread.start()
         while True:
-            msg = input("Type your message: ")
+            msg = input()
             if msg.upper() == self.disconnect_message.upper():
                 self.send_message(self.disconnect_message)
                 break
