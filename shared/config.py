@@ -8,14 +8,14 @@ HELP_TEXT = """
 Usage: python main.py [OPTIONS]
 
 Options:
-  --mode=server|client        Choose to run as server or client (default: server)
-  --server-port=PORT          Set the port number for the server/client (default: random between 1024-49151)
-  --server-ip=IP              Set the IP address for the server/client (default: local machine IP)
-  --header=NUM                Number of bytes to represent message length (default: 64)
-  --selected-format=FORMAT    Encoding format for messages (default: utf-8)
-  --who_message=COMMAND       Command to list connected users (default: !WHO)
-  --disconnect_message=COMMAND Command to disconnect (default: !QUIT)
-  -h, --help                 Show this help message and exit
+  --mode=server|client          Choose to run as server or client (default: server)
+  --server-port=PORT            Set the port number for the server/client (default: random between 1024-49151)
+  --server-ip=IP                Set the IP address for the server/client (default: local machine IP)
+  --header=NUM                  Number of bytes to represent message length (default: 64)
+  --selected-format=FORMAT      Encoding format for messages (default: utf-8)
+  --who_message=COMMAND         Command to list connected users (default: !WHO)
+  --disconnect_message=COMMAND  Command to disconnect (default: !QUIT)
+  -h, --help                    Show this help message and exit
 
 Examples:
   python main.py --mode=server --server-port=5050
