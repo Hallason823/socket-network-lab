@@ -58,9 +58,9 @@ class Server:
             users = ", ".join(self.active_clients.keys())
         self.send_message(conn, f"Connected users: {users}")
 
-    def process_direct_message(self, conn, nickname, content):
+    def process_direct_message(self, conn, nickname, msg):
         try:
-            dest_nick, dm_msg = content.split(" ", 1)
+            dest_nick, dm_msg = msg.split(" ", 1)
             dest_nick = dest_nick[1:]
         except ValueError:
             self.send_message(conn, "WARNING: DM format is not well defined.")
@@ -89,7 +89,7 @@ class Server:
             elif msg.upper() == self.who_command:
                 self.send_active_users(conn)
             elif msg.startswith("@"):
-                self.process_direct_message(conn, nickname, msg[1:].strip())
+                self.process_direct_message(conn, nickname, msg)
             else:
                 self.broadcast_message(nickname, msg)
             print(f"[{nickname}] {msg}")
