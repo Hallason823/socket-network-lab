@@ -58,12 +58,27 @@ class Server:
             users = ", ".join(self.active_clients.keys())
         self.send_message(conn, f"Connected users: {users}")
 
+    def process_direct_message(self, conn, nickname, content):
+        try:
+            dest_nick, dm_msg = content.split(" ", 1)
+            dest_nick = dest_nick[1:]
+        except ValueError:
+            self.send_message(conn, "WARNING: DM format is not well defined.")
+            return
+        with self.lock:
+            if dest_nick not in self.active_clients:
+                self.send_message(conn, f"ERROR: user not found {dest_nick}")
+                return
+            dest_conn = self.active_clients[dest_nick]
+            self.send_message(dest_conn, f"FROM {nickname} [dm]: {dm_msg}")
+        print(f"[DM] From {nickname} to {dest_nick}: {dm_msg}")
+
     def broadcast_message(self, nickname, msg):
         with self.lock:
             for user, user_conn in self.active_clients.items():
                 if user != nickname:
                     self.send_message(user_conn, f"FROM {nickname} [all]: {msg}")
-
+    
     def client_loop(self, conn, nickname):
         connected = True
         while connected:
@@ -73,6 +88,8 @@ class Server:
                 break
             elif msg.upper() == self.who_command:
                 self.send_active_users(conn)
+            elif msg.startswith("@"):
+                self.process_direct_message(conn, nickname, msg[1:].strip())
             else:
                 self.broadcast_message(nickname, msg)
             print(f"[{nickname}] {msg}")
