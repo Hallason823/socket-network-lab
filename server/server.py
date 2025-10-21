@@ -2,12 +2,12 @@ import socket
 import threading
 
 class Server:
-    def __init__(self, port, ip, header, selected_format, who_message, disconnect_message):
+    def __init__(self, port, ip, header, selected_format, who_command, disconnect_message):
         self.port = port
         self.ip = ip
         self.header = header
         self.selected_format = selected_format
-        self.who_message = who_message
+        self.who_command = who_command
         self.disconnect_message = disconnect_message
         self.active_clients = {}
         self.lock = threading.Lock()
@@ -70,7 +70,7 @@ class Server:
             if msg is None or msg.upper() == self.disconnect_message:
                 connected = False
                 break
-            elif msg.upper() == "WHO":
+            elif msg.upper() == self.who_command:
                 self.send_active_users(conn)
             else:
                 self.broadcast_message(nickname, msg)
@@ -99,3 +99,6 @@ class Server:
             thread = threading.Thread(target=self.handle_client, args=(conn, addr))
             thread.start()
             print(f"[ACTIVE CONNECTIONS] {threading.active_count()-1}")
+
+if __name__ == "__main__":
+    server = Server(ip=socket.gethostbyname(socket.gethostname()),port=12345,header=64,selected_format="utf-8",who_command="!WHO",disconnect_message="!QUIT")
