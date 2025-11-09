@@ -69,3 +69,11 @@ python main.py --help
 - The server waits for client connections, manages connected users, and routes messages.
 - The client connects to the server, sends/receives messages, and supports commands like listing users and quitting.
 - Communication is done with message headers defining message lengths.
+
+# Authors
+
+- Arthur Azevedo
+- David Mendes
+- Deivson Ricardo
+- Hallason Matias
+- Wilson Pereira
